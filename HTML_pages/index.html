@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Base64 Encoder/Decoder</title>
+    
+</head>
+<body>
+    <h1>Base64 Encoder/Decoder</h1>
+    <!-- Your form and result elements will go here -->
+    <form>
+        <label for="text">Enter Text:</label>
+        <textarea id="text" rows="5" cols="40"></textarea>
+        <br>
+        <button type="button" id="encodeButton">Encode</button>
+        <button type="button" id="decodeButton">Decode</button>
+    </form>
+    <div id="result"></div>
+    
+    <script >
+        // Get elements from the DOM
+const textInput = document.getElementById('text');
+const encodeButton = document.getElementById('encodeButton');
+const decodeButton = document.getElementById('decodeButton');
+const resultDiv = document.getElementById('result');
+
+// Event listeners for the encode and decode buttons
+encodeButton.addEventListener('click', () => {
+    const text = textInput.value;
+    const encodedText = btoa(text);
+    resultDiv.innerHTML = `<p>Encoded Text:</p><pre>${encodedText}</pre>`;
+});
+
+decodeButton.addEventListener('click', () => {
+    const encodedText = textInput.value;
+    try {
+        const decodedText = atob(encodedText);
+        resultDiv.innerHTML = `<p>Decoded Text:</p><pre>${decodedText}</pre>`;
+    } catch (error) {
+        resultDiv.innerHTML = `<p>Error: Invalid Base64 Input</p>`;
+    }
+});
+
+    </script>
+</body>
+</html>
